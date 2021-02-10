@@ -14,11 +14,18 @@ repositories {
 
 apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
-apply plugin: 'java'
 apply plugin: 'jacoco'
+apply plugin: 'java'
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
 
 intellij {
     version ideaVersion //for a full list of IntelliJ IDEA releases please see https://www.jetbrains.com/intellij-repository/releases
+    if (ideaVersion.substring(3) == "2020.2") {
+        plugins 'com.intellij.javafx:1.0.2'
+    }
     pluginName 'org.jboss.tools.intellij.analytics'
     updateSinceUntilBuild false
 }
